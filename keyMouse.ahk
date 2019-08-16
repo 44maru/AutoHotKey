@@ -1,21 +1,34 @@
 global mode := 0
-MOUSE_MOVE_DISTANCE := 100
+MOUSE_MOVE_DISTANCE := 10
 PREFIX_MODE := 0
 NO_PREFIX_MODE := 1
+VI_MODE := 2
 
-^!n::
++!Space::
 	if %mode% = %PREFIX_MODE%
 	{
 		mode := NO_PREFIX_MODE
-		TrayTip , ,No Prefix Mode, 1
-		return
+		TrayTip , ,Easy Mode, 1
 	}
 	else
 	{
 		mode := PREFIX_MODE
-		TrayTip , ,Need Prefix Mode, 1
+		TrayTip , ,Normal Mode, 1
 	}
-return
+Return
+
+sc03A::
+	if mode <> 2
+	{
+		mode := VI_MODE
+		TrayTip , ,Vi Mode, 1
+	}
+	else
+	{
+		mode := PREFIX_MODE
+		TrayTip , ,Normal Mode, 1
+	}
+Return
 
 ;--------------
 ; Mouse Click
@@ -29,33 +42,40 @@ vk1D & @::MouseClick, Middle
 ; No Prefix Mode
 ;-------------------
 #if mode = 1
-	;---------------
-	; Mouse Up
-	;---------------
-	 k::MouseMove 0, -MOUSE_MOVE_DISTANCE, 0, R
-	^k::MouseMove 0, -10, 0, R
-	+k::MouseMove 0, -1000, 0, R
+k::
+j::
+h::
+l::
+	Magnification := 1
+    While (GetKeyState("k", "P") || GetKeyState("j", "P") || GetKeyState("h", "P") || GetKeyState("l", "P"))
+    {
+        MoveX := 0, MoveY := 0
+        MoveY += GetKeyState("k", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
+        MoveX += GetKeyState("h", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
+        MoveY += GetKeyState("j", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
+        MoveX += GetKeyState("l", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
+        MouseMove, %MoveX%, %MoveY%, 1, R
+        Sleep, 0
+    }
+    Return
 
-	;---------------
-	; Mouse Down
-	;---------------
-	 j::MouseMove 0, MOUSE_MOVE_DISTANCE, 0, R
-	^j::MouseMove 0, 10, 0, R
-	+j::MouseMove 0, 1000, 0, R
++k::
++j::
++h::
++l::
+	Magnification := 5
+    While (GetKeyState("k", "P") || GetKeyState("j", "P") || GetKeyState("h", "P") || GetKeyState("l", "P"))
+    {
+        MoveX := 0, MoveY := 0
+        MoveY += GetKeyState("k", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
+        MoveX += GetKeyState("h", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
+        MoveY += GetKeyState("j", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
+        MoveX += GetKeyState("l", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
+        MouseMove, %MoveX%, %MoveY%, 1, R
+        Sleep, 0
+    }
+    Return
 
-	;---------------
-	; Mouse Left
-	;---------------
-	 h::MouseMove -MOUSE_MOVE_DISTANCE, 0, 0, R
-	^h::MouseMove -10, 0, 0, R
-	+h::MouseMove -1000, 0, 0, R
-
-	;---------------
-	; Mouse Right
-	;---------------
-	 l::MouseMove MOUSE_MOVE_DISTANCE, 0, 0, R
-	^l::MouseMove 10, 0, 0, R
-	+l::MouseMove 1000, 0, 0, R
 
 	;--------------
 	; Mouse Click
@@ -65,6 +85,38 @@ vk1D & @::MouseClick, Middle
 	vk1C::MouseClick, Right
 	@::MouseClick, Middle
 
+	;--------------
+	;Mouse Wheel
+	;--------------
+	p::WheelUp
+	n::WheelDown
+
+	;--------------
+	;Home / End
+	;--------------
+	g::
+	if GetKeyState("shift", "P")
+		Send {End}
+	else
+		Send {Home}
+	return
+
+
+#if
+
+
+;-------------------
+; Vi Mode
+;-------------------
+#if mode = 2
+	k::Up
+	j::Down
+	h::Left
+	l::Right
+	i::
+		Send, {F2}
+		mode := PREFIX_MODE
+		Return
 #if
 
 
@@ -82,39 +134,25 @@ return
 
 
 
+
 vk1D & k::
-if GetKeyState("ctrl", "P")
-	MouseMove 0, -10, 0, R
-else if GetKeyState("shift", "P")
-	MouseMove 0, -1000, 0, R
-else
-	MouseMove 0, -MOUSE_MOVE_DISTANCE, 0, R
-return
-
 vk1D & j::
-if GetKeyState("ctrl", "P")
-	MouseMove 0, 10, 0, R
-else if GetKeyState("shift", "P")
-	MouseMove 0, 1000, 0, R
-else
-	MouseMove 0, MOUSE_MOVE_DISTANCE, 0, R
-return
- 
 vk1D & h::
-if GetKeyState("ctrl", "P")
-	MouseMove -10, 0, 0, R
-else if GetKeyState("shift", "P")
-	MouseMove -1000, 0, 0, R
-else
-	MouseMove -MOUSE_MOVE_DISTANCE, 0, 0, R
-return
-
 vk1D & l::
-if GetKeyState("ctrl", "P")
-	MouseMove 10, 0, 0, R
-else if GetKeyState("shift", "P")
-	MouseMove 1000, 0, 0, R
-else
-	MouseMove MOUSE_MOVE_DISTANCE, 0, 0, R
-return
- 
+    While (GetKeyState("vk1D", "P"))
+    {
+    	if GetKeyState("shift", "P")
+	    	Magnification := 5
+	    else
+	    	Magnification := 1
+
+        MoveX := 0, MoveY := 0
+        MoveY += GetKeyState("k", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
+        MoveX += GetKeyState("h", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
+        MoveY += GetKeyState("j", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
+        MoveX += GetKeyState("l", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
+        MouseMove, %MoveX%, %MoveY%, 1, R
+        Sleep, 0
+    }
+    Return
+
