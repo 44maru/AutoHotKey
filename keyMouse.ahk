@@ -51,66 +51,64 @@ vk1D & @::MouseClick, Middle
 ; No Prefix Mode
 ;-------------------
 #if mode = 1
-k::
-j::
-h::
-l::
-	Magnification := 2
-    While (GetKeyState("k", "P") || GetKeyState("j", "P") || GetKeyState("h", "P") || GetKeyState("l", "P"))
-    {
-        MoveX := 0, MoveY := 0
-        MoveY += GetKeyState("k", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
-        MoveX += GetKeyState("h", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
-        MoveY += GetKeyState("j", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
-        MoveX += GetKeyState("l", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
-        MouseMove, %MoveX%, %MoveY%, 1, R
-        Sleep, 0
-    }
-    Return
+	k::
+	j::
+	h::
+	l::
+		Magnification := 2
+	    While (GetKeyState("k", "P") || GetKeyState("j", "P") || GetKeyState("h", "P") || GetKeyState("l", "P"))
+	    {
+	        MoveX := 0, MoveY := 0
+	        MoveY += GetKeyState("k", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
+	        MoveX += GetKeyState("h", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
+	        MoveY += GetKeyState("j", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
+	        MoveX += GetKeyState("l", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
+	        MouseMove, %MoveX%, %MoveY%, 1, R
+	        Sleep, 0
+	    }
+	    Return
 
-+k::
-+j::
-+h::
-+l::
-	Magnification := 5
-    While (GetKeyState("k", "P") || GetKeyState("j", "P") || GetKeyState("h", "P") || GetKeyState("l", "P"))
-    {
-        MoveX := 0, MoveY := 0
-        MoveY += GetKeyState("k", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
-        MoveX += GetKeyState("h", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
-        MoveY += GetKeyState("j", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
-        MoveX += GetKeyState("l", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
-        MouseMove, %MoveX%, %MoveY%, 1, R
-        Sleep, 0
-    }
-    Return
-
-
-	;--------------
-	; Mouse Click
-	;---------------
-	Space::MouseClick, Left,,,,,D
-	Space UP::MouseClick, Left,,,,,U
-	vk1C::MouseClick, Right
-	@::MouseClick, Middle
-
-	;--------------
-	;Mouse Wheel
-	;--------------
-	p::WheelUp
-	n::WheelDown
-
-	;--------------
-	;Home / End
-	;--------------
-	g::
-	if GetKeyState("shift", "P")
-		Send {End}
-	else
-		Send {Home}
-	return
+	+k::
+	+j::
+	+h::
+	+l::
+		Magnification := 5
+	    While (GetKeyState("k", "P") || GetKeyState("j", "P") || GetKeyState("h", "P") || GetKeyState("l", "P"))
+	    {
+	        MoveX := 0, MoveY := 0
+	        MoveY += GetKeyState("k", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
+	        MoveX += GetKeyState("h", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
+	        MoveY += GetKeyState("j", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
+	        MoveX += GetKeyState("l", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
+	        MouseMove, %MoveX%, %MoveY%, 1, R
+	        Sleep, 0
+	    }
+	    Return
 
 
+		;--------------
+		; Mouse Click
+		;---------------
+		Space::MouseClick, Left,,,,,D
+		Space UP::MouseClick, Left,,,,,U
+		vk1C::MouseClick, Right
+		@::MouseClick, Middle
+
+		;--------------
+		;Mouse Wheel
+		;--------------
+		p::WheelUp
+		n::WheelDown
+
+		;--------------
+		;Home / End
+		;--------------
+		g::
+		if GetKeyState("shift", "P")
+			Send {End}
+		else
+			Send {Home}
+		return
 #if
 
 
