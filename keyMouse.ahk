@@ -1,8 +1,17 @@
 global mode := 0
-MOUSE_MOVE_DISTANCE := 10
+MOUSE_MOVE_DISTANCE := 5
 PREFIX_MODE := 0
 NO_PREFIX_MODE := 1
 VI_MODE := 2
+
+X_1 := 100
+Y_1 := 100
+X_2 := 1000
+Y_2 := Y_1
+X_3 := X_1
+Y_3 := 450
+X_4 := X_2
+Y_4 := Y_3
 
 +!Space::
 	if %mode% = %PREFIX_MODE%
@@ -46,7 +55,7 @@ k::
 j::
 h::
 l::
-	Magnification := 1
+	Magnification := 2
     While (GetKeyState("k", "P") || GetKeyState("j", "P") || GetKeyState("h", "P") || GetKeyState("l", "P"))
     {
         MoveX := 0, MoveY := 0
@@ -64,6 +73,9 @@ l::
 +h::
 +l::
 	Magnification := 5
+    While (GetKeyState("k", "P") || GetKeyState("j", "P") || GetKeyState("h", "P") || GetKeyState("l", "P"))
+    {
+        MoveX := 0, MoveY := 0
     While (GetKeyState("k", "P") || GetKeyState("j", "P") || GetKeyState("h", "P") || GetKeyState("l", "P"))
     {
         MoveX := 0, MoveY := 0
@@ -143,8 +155,10 @@ vk1D & l::
     {
     	if GetKeyState("shift", "P")
 	    	Magnification := 5
-	    else
+	    else if GetKeyState("ctrl", "P")
 	    	Magnification := 1
+	    else
+	    	Magnification := 2
 
         MoveX := 0, MoveY := 0
         MoveY += GetKeyState("k", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
@@ -156,3 +170,9 @@ vk1D & l::
     }
     Return
 
+vk1D & 1::MouseMove, %X_1%, %Y_1%, 1
+vk1D & 2::MouseMove, %X_2%, %Y_2%, 1
+vk1D & 3::MouseMove, %X_3%, %Y_3%, 1
+vk1D & 4::MouseMove, %X_4%, %Y_4%, 1
+
+vk1D & r::Reload
