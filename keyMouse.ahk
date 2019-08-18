@@ -165,9 +165,10 @@ vk1D & l::
     }
     Return
 
-vk1D & 1::MouseMove, %X_1%, %Y_1%, 1
-vk1D & 2::MouseMove, %X_2%, %Y_2%, 1
-vk1D & 3::MouseMove, %X_3%, %Y_3%, 1
-vk1D & 4::MouseMove, %X_4%, %Y_4%, 1
+vk1D & 1::MouseMove, %X_1%, %Y_1%, 5
+vk1D & 2::MouseMove, %X_2%, %Y_2%, 5
+vk1D & 3::MouseMove, %X_3%, %Y_3%, 5
+vk1D & 4::MouseMove, %X_4%, %Y_4%, 5
 
 vk1D & r::Reload
+vk1D & e::Run, "C:\Program Files (x86)\sakura\sakura.exe" "C:\Users\ishimoto\Desktop\Key-kun\AutoHotkey_1.1.30.03\myScript\keyMouse.ahk"
