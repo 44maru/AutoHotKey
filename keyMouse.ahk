@@ -44,7 +44,8 @@ Return
 ;---------------
 vk1D & Space::MouseClick, Left,,,,,D
 vk1D & Space UP::MouseClick, Left,,,,,U
-vk1D & vk1C::MouseClick, Right
+vk1D & vk1C::MouseClick, Right,,,,,D
+vk1D & vk1C UP::MouseClick, Right,,,,,U
 vk1D & @::MouseClick, Middle
 
 ;-------------------
