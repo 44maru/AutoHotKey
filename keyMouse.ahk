@@ -6,13 +6,33 @@ VI_MODE := 2
 
 X_1 := 100
 Y_1 := 100
-X_2 := 1000
+X_2 := 1700
 Y_2 := Y_1
 X_3 := X_1
-Y_3 := 450
+Y_3 := 900
 X_4 := X_2
 Y_4 := Y_3
+X_5 := (X_1 + X_2) / 2
+Y_5 := (Y_1 + Y_2) / 2
 
+
+;-----------------------------
+; Reload
+;-----------------------------
+vk1D & r::
+	MsgBox, Reloaded!!
+	Reload
+	Return
+
+;-----------------------------
+; Edit
+;-----------------------------
+vk1D & e::Run, "C:\Users\xxxx\sakura\sakura.exe" "C:\Users\xxxx\keyMouse.ahk"
+
+
+;-----------------------------
+; Mode Change
+;-----------------------------
 +!Space::
 	if %mode% = %PREFIX_MODE%
 	{
@@ -26,6 +46,9 @@ Y_4 := Y_3
 	}
 Return
 
+;-----------------------------
+; Vi Mode Change
+;-----------------------------
 sc03A::
 	if mode <> 2
 	{
@@ -47,6 +70,64 @@ vk1D & Space UP::MouseClick, Left,,,,,U
 vk1D & vk1C::MouseClick, Right,,,,,D
 vk1D & vk1C UP::MouseClick, Right,,,,,U
 vk1D & @::MouseClick, Middle
+
+;-------------------
+; Mouse Wheel
+;-------------------
+vk1D & p::WheelUp
+vk1D & n::WheelDown
+
+;-------------------
+; Mouse move
+;-------------------
+vk1D & k::
+vk1D & j::
+vk1D & h::
+vk1D & l::
+    While (GetKeyState("vk1D", "P"))
+    {
+    	if GetKeyState("shift", "P")
+	    	Magnification := 5
+	    else if GetKeyState("ctrl", "P")
+	    	Magnification := 1
+	    else
+	    	Magnification := 2
+
+        MoveX := 0, MoveY := 0
+        MoveY += GetKeyState("k", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
+        MoveX += GetKeyState("h", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
+        MoveY += GetKeyState("j", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
+        MoveX += GetKeyState("l", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
+        MouseMove, %MoveX%, %MoveY%, 1, R
+        Sleep, 0
+    }
+    Return
+
+;--------------------------
+; Mouse move to fix point
+;--------------------------
+vk1D & 1::MouseMove, %X_1%, %Y_1%, 5
+vk1D & 2::MouseMove, %X_2%, %Y_2%, 5
+vk1D & 3::MouseMove, %X_3%, %Y_3%, 5
+vk1D & 4::MouseMove, %X_4%, %Y_4%, 5
+vk1D & 5::MouseMove, %X_5%, 500, 5
+
+;-------------------
+; Home / End
+;-------------------
+vk1D & g::
+if GetKeyState("shift", "P")
+	Send {End}
+else
+	Send {Home}
+return
+
+;-------------------
+; PageUp / PageDown
+;-------------------
+vk1C & h::Send {Blind}{PgUp}
+vk1C & l::Send {Blind}{PgDn}
+
 
 ;-------------------
 ; No Prefix Mode
@@ -128,48 +209,3 @@ vk1D & @::MouseClick, Middle
 #if
 
 
-;Mouse Wheel
-vk1D & p::WheelUp
-vk1D & n::WheelDown
-
-;Home / End
-vk1D & g::
-if GetKeyState("shift", "P")
-	Send {End}
-else
-	Send {Home}
-return
-
-
-
-
-vk1D & k::
-vk1D & j::
-vk1D & h::
-vk1D & l::
-    While (GetKeyState("vk1D", "P"))
-    {
-    	if GetKeyState("shift", "P")
-	    	Magnification := 5
-	    else if GetKeyState("ctrl", "P")
-	    	Magnification := 1
-	    else
-	    	Magnification := 2
-
-        MoveX := 0, MoveY := 0
-        MoveY += GetKeyState("k", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
-        MoveX += GetKeyState("h", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
-        MoveY += GetKeyState("j", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
-        MoveX += GetKeyState("l", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
-        MouseMove, %MoveX%, %MoveY%, 1, R
-        Sleep, 0
-    }
-    Return
-
-vk1D & 1::MouseMove, %X_1%, %Y_1%, 5
-vk1D & 2::MouseMove, %X_2%, %Y_2%, 5
-vk1D & 3::MouseMove, %X_3%, %Y_3%, 5
-vk1D & 4::MouseMove, %X_4%, %Y_4%, 5
-
-vk1D & r::Reload
-vk1D & e::Run, "C:\Program Files (x86)\sakura\sakura.exe" "C:\Users\ishimoto\Desktop\Key-kun\AutoHotkey_1.1.30.03\myScript\keyMouse.ahk"
