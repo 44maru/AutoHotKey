@@ -19,7 +19,7 @@ Y_5 := (Y_1 + Y_2) / 2
 ;-----------------------------
 ; Reload
 ;-----------------------------
-vk1D & r::
+vk1C & r::
 	MsgBox, Reloaded!!
 	Reload
 	Return
@@ -27,7 +27,7 @@ vk1D & r::
 ;-----------------------------
 ; Edit
 ;-----------------------------
-vk1D & e::Run, "C:\Users\xxxx\sakura\sakura.exe" "C:\Users\xxxx\keyMouse.ahk"
+vk1C & e::Run, "C:\Users\xxx\sakura.exe" "C:\Users\xxx\keyMouse.ahk"
 
 
 ;-----------------------------
@@ -65,26 +65,26 @@ Return
 ;--------------
 ; Mouse Click
 ;---------------
-vk1D & Space::MouseClick, Left,,,,,D
-vk1D & Space UP::MouseClick, Left,,,,,U
-vk1D & vk1C::MouseClick, Right,,,,,D
-vk1D & vk1C UP::MouseClick, Right,,,,,U
-vk1D & @::MouseClick, Middle
+vk1C & Space::MouseClick, Left,,,,,D
+vk1C & Space UP::MouseClick, Left,,,,,U
+vk1C & vk1C::MouseClick, Right,,,,,D
+vk1C & vk1C UP::MouseClick, Right,,,,,U
+vk1C & @::MouseClick, Middle
 
 ;-------------------
 ; Mouse Wheel
 ;-------------------
-vk1D & p::WheelUp
-vk1D & n::WheelDown
+vk1C & p::WheelUp
+vk1C & n::WheelDown
 
 ;-------------------
 ; Mouse move
 ;-------------------
-vk1D & k::
-vk1D & j::
-vk1D & h::
-vk1D & l::
-    While (GetKeyState("vk1D", "P"))
+vk1C & k::
+vk1C & j::
+vk1C & h::
+vk1C & l::
+    While (GetKeyState("vk1C", "P"))
     {
     	if GetKeyState("shift", "P")
 	    	Magnification := 5
@@ -106,11 +106,11 @@ vk1D & l::
 ;--------------------------
 ; Mouse move to fix point
 ;--------------------------
-vk1D & 1::MouseMove, %X_1%, %Y_1%, 5
-vk1D & 2::MouseMove, %X_2%, %Y_2%, 5
-vk1D & 3::MouseMove, %X_3%, %Y_3%, 5
-vk1D & 4::MouseMove, %X_4%, %Y_4%, 5
-vk1D & 5::MouseMove, %X_5%, 500, 5
+vk1C & 1::MouseMove, %X_1%, %Y_1%, 5
+vk1C & 2::MouseMove, %X_2%, %Y_2%, 5
+vk1C & 3::MouseMove, %X_3%, %Y_3%, 5
+vk1C & 4::MouseMove, %X_4%, %Y_4%, 5
+vk1C & 5::MouseMove, %X_5%, 500, 5
 
 ;-------------------
 ; Home / End
@@ -125,8 +125,8 @@ return
 ;-------------------
 ; PageUp / PageDown
 ;-------------------
-vk1C & h::Send {Blind}{PgUp}
-vk1C & l::Send {Blind}{PgDn}
+vk1D & p::Send {Blind}{PgUp}
+vk1D & n::Send {Blind}{PgDn}
 
 
 ;-------------------
@@ -168,29 +168,29 @@ vk1C & l::Send {Blind}{PgDn}
 	    Return
 
 
-		;--------------
-		; Mouse Click
-		;---------------
-		Space::MouseClick, Left,,,,,D
-		Space UP::MouseClick, Left,,,,,U
-		vk1C::MouseClick, Right
-		@::MouseClick, Middle
+	;--------------
+	; Mouse Click
+	;---------------
+	Space::MouseClick, Left,,,,,D
+	Space UP::MouseClick, Left,,,,,U
+	vk1C::MouseClick, Right
+	@::MouseClick, Middle
 
-		;--------------
-		;Mouse Wheel
-		;--------------
-		p::WheelUp
-		n::WheelDown
+	;--------------
+	;Mouse Wheel
+	;--------------
+	p::WheelUp
+	n::WheelDown
 
-		;--------------
-		;Home / End
-		;--------------
-		g::
-		if GetKeyState("shift", "P")
-			Send {End}
-		else
-			Send {Home}
-		return
+	;--------------
+	;Home / End
+	;--------------
+	g::
+	if GetKeyState("shift", "P")
+		Send {End}
+	else
+		Send {Home}
+	return
 #if
 
 
