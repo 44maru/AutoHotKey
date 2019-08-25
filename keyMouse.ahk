@@ -128,6 +128,11 @@ return
 vk1D & p::Send {Blind}{PgUp}
 vk1D & n::Send {Blind}{PgDn}
 
+;----------------------------
+; Windows Virtual Desktop
+;----------------------------
+^#h::^#Left
+^#l::^#Right
 
 ;-------------------
 ; No Prefix Mode
