@@ -1,19 +1,19 @@
 global mode := 0
-MOUSE_MOVE_DISTANCE := 5
+MOUSE_MOVE_DISTANCE := 2
 PREFIX_MODE := 0
 NO_PREFIX_MODE := 1
 VI_MODE := 2
 
-X_1 := 100
-Y_1 := 100
-X_2 := 1700
+X_1 := 50
+Y_1 := 50
+X_2 := 1100
 Y_2 := Y_1
 X_3 := X_1
-Y_3 := 900
+Y_3 := 550
 X_4 := X_2
 Y_4 := Y_3
 X_5 := (X_1 + X_2) / 2
-Y_5 := (Y_1 + Y_2) / 2
+Y_5 := (Y_1 + Y_3) / 2
 
 
 ;-----------------------------
@@ -27,7 +27,7 @@ vk1C & r::
 ;-----------------------------
 ; Edit
 ;-----------------------------
-vk1C & e::Run, "C:\Users\xxx\sakura.exe" "C:\Users\xxx\keyMouse.ahk"
+vk1C & e::Run, "xxx\sakura.exe" "xxx\keyMouse.ahk"
 
 
 ;-----------------------------
@@ -69,6 +69,8 @@ vk1C & Space::MouseClick, Left,,,,,D
 vk1C & Space UP::MouseClick, Left,,,,,U
 vk1C & vk1C::MouseClick, Right,,,,,D
 vk1C & vk1C UP::MouseClick, Right,,,,,U
+vk1C & v::MouseClick, Right,,,,,D
+vk1C & v UP::MouseClick, Right,,,,,U
 vk1C & @::MouseClick, Middle
 
 ;-------------------
@@ -86,12 +88,12 @@ vk1C & h::
 vk1C & l::
     While (GetKeyState("vk1C", "P"))
     {
-    	if GetKeyState("shift", "P")
-	    	Magnification := 5
-	    else if GetKeyState("ctrl", "P")
+    	if GetKeyState("ctrl", "P")
+	    	Magnification := 12
+	    else if GetKeyState("shift", "P")
 	    	Magnification := 1
 	    else
-	    	Magnification := 2
+	    	Magnification := 4
 
         MoveX := 0, MoveY := 0
         MoveY += GetKeyState("k", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
@@ -106,11 +108,11 @@ vk1C & l::
 ;--------------------------
 ; Mouse move to fix point
 ;--------------------------
-vk1C & 1::MouseMove, %X_1%, %Y_1%, 5
-vk1C & 2::MouseMove, %X_2%, %Y_2%, 5
-vk1C & 3::MouseMove, %X_3%, %Y_3%, 5
-vk1C & 4::MouseMove, %X_4%, %Y_4%, 5
-vk1C & 5::MouseMove, %X_5%, 500, 5
+vk1C & a::MouseMove, %X_1%, %Y_1%, 7
+vk1C & s::MouseMove, %X_2%, %Y_2%, 7
+vk1C & d::MouseMove, %X_3%, %Y_3%, 7
+vk1C & f::MouseMove, %X_4%, %Y_4%, 7
+vk1C & g::MouseMove, %X_5%, %Y_5%, 7
 
 ;-------------------
 ; Home / End
