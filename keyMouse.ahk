@@ -4,16 +4,40 @@ PREFIX_MODE := 0
 NO_PREFIX_MODE := 1
 VI_MODE := 2
 
-X_1 := 50
-Y_1 := 50
-X_2 := 1100
-Y_2 := Y_1
-X_3 := X_1
-Y_3 := 550
-X_4 := X_2
-Y_4 := Y_3
-X_5 := (X_1 + X_2) / 2
-Y_5 := (Y_1 + Y_3) / 2
+X_L := 50
+X_R := 1800
+X_M := (X_L + X_R) / 2
+
+Y_H := 50
+Y_L := 1000
+Y_M := (Y_H + Y_L) / 2
+
+X_1 := X_L
+Y_1 := Y_H
+
+X_2 := X_M
+Y_2 := Y_H
+
+X_3 := X_R
+Y_3 := Y_H
+
+X_4 := X_L
+Y_4 := Y_M
+
+X_5 := X_M
+Y_5 := Y_M
+
+X_6 := X_R
+Y_6 := Y_M
+
+X_7 := X_L
+Y_7 := Y_L
+
+X_8 := X_M
+Y_8 := Y_L
+
+X_9 := X_R
+Y_9 := Y_L
 
 
 ;-----------------------------
@@ -27,7 +51,7 @@ vk1C & r::
 ;-----------------------------
 ; Edit
 ;-----------------------------
-vk1C & e::Run, "xxx\sakura.exe" "xxx\keyMouse.ahk"
+vk1C & i::Run, "C:\xxxx\sakura.exe" "C:\xxxx\keyMouse.ahk"
 
 
 ;-----------------------------
@@ -108,11 +132,15 @@ vk1C & l::
 ;--------------------------
 ; Mouse move to fix point
 ;--------------------------
-vk1C & a::MouseMove, %X_1%, %Y_1%, 7
-vk1C & s::MouseMove, %X_2%, %Y_2%, 7
-vk1C & d::MouseMove, %X_3%, %Y_3%, 7
-vk1C & f::MouseMove, %X_4%, %Y_4%, 7
-vk1C & g::MouseMove, %X_5%, %Y_5%, 7
+vk1C & q::MouseMove, %X_1%, %Y_1%, 7
+vk1C & w::MouseMove, %X_2%, %Y_2%, 7
+vk1C & e::MouseMove, %X_3%, %Y_3%, 7
+vk1C & a::MouseMove, %X_4%, %Y_4%, 7
+vk1C & s::MouseMove, %X_5%, %Y_5%, 7
+vk1C & d::MouseMove, %X_6%, %Y_6%, 7
+vk1C & z::MouseMove, %X_7%, %Y_7%, 7
+vk1C & x::MouseMove, %X_8%, %Y_8%, 7
+vk1C & c::MouseMove, %X_9%, %Y_9%, 7
 
 ;-------------------
 ; Home / End
