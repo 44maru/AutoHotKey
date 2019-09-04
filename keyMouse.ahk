@@ -185,6 +185,8 @@ vk1D & n::Send {Blind}{PgDn}
 ;----------------------------
 ^#h::^#Left
 ^#l::^#Right
+vk1D & h::^#Left
+vk1D & l::^#Right
 
 ;-------------------
 ; No Prefix Mode
