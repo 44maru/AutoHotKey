@@ -1,18 +1,12 @@
+#include keyMouse_define.ahk
+
 global mode := 0
 MOUSE_MOVE_DISTANCE := 2
 PREFIX_MODE := 0
 NO_PREFIX_MODE := 1
 VI_MODE := 2
 
-X_L := 50
-X_R := 1800
-X_M := (X_L + X_R) / 2
-
-Y_H := 50
-Y_L := 1000
-Y_M := (Y_H + Y_L) / 2
-
-X_1 := X_L
+fX_1 := X_L
 Y_1 := Y_H
 
 X_2 := X_M
@@ -51,7 +45,7 @@ vk1C & r::
 ;-----------------------------
 ; Edit
 ;-----------------------------
-vk1C & i::Run, "C:\xxxx\sakura.exe" "C:\xxxx\keyMouse.ahk"
+vk1C & i::Run, %EDITOR% %AHK_FILE%
 
 
 ;-----------------------------
