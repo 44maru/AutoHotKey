@@ -1,35 +1,36 @@
 #include keyMouse_define.ahk
 
 global mode := 0
-MOUSE_MOVE_DISTANCE := 2
+MOUSE_MOVE_DISTANCE := 8
 PREFIX_MODE := 0
 NO_PREFIX_MODE := 1
 VI_MODE := 2
+SysGet, Monitor, Monitor
 
-fX_1 := X_L
+X_L := MonitorLeft + (MonitorRight*PADDING_RATIO)
+X_R := MonitorRight - (MonitorRight*PADDING_RATIO)
+X_M := (X_L + X_R) / 2
+
+Y_H := MonitorTop + (MonitorBottom*PADDING_RATIO)
+Y_L := MonitorBottom - (MonitorBottom*PADDING_RATIO)
+Y_M := (Y_H + Y_L) / 2
+
+X_1 := X_L
 Y_1 := Y_H
-
 X_2 := X_M
 Y_2 := Y_H
-
 X_3 := X_R
 Y_3 := Y_H
-
 X_4 := X_L
 Y_4 := Y_M
-
 X_5 := X_M
 Y_5 := Y_M
-
 X_6 := X_R
 Y_6 := Y_M
-
 X_7 := X_L
 Y_7 := Y_L
-
 X_8 := X_M
 Y_8 := Y_L
-
 X_9 := X_R
 Y_9 := Y_L
 
@@ -106,18 +107,11 @@ vk1C & h::
 vk1C & l::
     While (GetKeyState("vk1C", "P"))
     {
-    	if GetKeyState("ctrl", "P")
-	    	Magnification := 12
-	    else if GetKeyState("shift", "P")
-	    	Magnification := 1
-	    else
-	    	Magnification := 4
-
         MoveX := 0, MoveY := 0
-        MoveY += GetKeyState("k", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
-        MoveX += GetKeyState("h", "P") ? -MOUSE_MOVE_DISTANCE*Magnification : 0
-        MoveY += GetKeyState("j", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
-        MoveX += GetKeyState("l", "P") ? MOUSE_MOVE_DISTANCE*Magnification : 0
+        MoveY += GetKeyState("k", "P") ? -MOUSE_MOVE_DISTANCE : 0
+        MoveX += GetKeyState("h", "P") ? -MOUSE_MOVE_DISTANCE : 0
+        MoveY += GetKeyState("j", "P") ?  MOUSE_MOVE_DISTANCE : 0
+        MoveX += GetKeyState("l", "P") ?  MOUSE_MOVE_DISTANCE : 0
         MouseMove, %MoveX%, %MoveY%, 1, R
         Sleep, 0
     }
@@ -135,6 +129,40 @@ vk1C & d::MouseMove, %X_6%, %Y_6%, 7
 vk1C & z::MouseMove, %X_7%, %Y_7%, 7
 vk1C & x::MouseMove, %X_8%, %Y_8%, 7
 vk1C & c::MouseMove, %X_9%, %Y_9%, 7
+
+;--------------------------
+; Change Mouse Speed
+;--------------------------
+vk1C & sc03A::
+  if A_TickCount < %MuhenkanDouble%
+  {
+	if MOUSE_MOVE_DISTANCE <> 24
+	{
+		MOUSE_MOVE_DISTANCE := 24
+	}
+	else
+	{
+		MOUSE_MOVE_DISTANCE := 8
+	}
+	Return
+  }
+  else
+  {
+    MuhenkanDouble = %A_TickCount%
+    MuhenkanDouble += 400
+
+	if MOUSE_MOVE_DISTANCE <> 8
+	{
+		MOUSE_MOVE_DISTANCE := 8
+	}
+	else
+	{
+		MOUSE_MOVE_DISTANCE := 2
+	}
+  }
+ 
+Return
+
 
 ;-------------------
 ; Home / End
