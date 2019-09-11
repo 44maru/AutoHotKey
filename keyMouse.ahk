@@ -4,7 +4,6 @@ global mode := 0
 MOUSE_MOVE_DISTANCE := 8
 PREFIX_MODE := 0
 NO_PREFIX_MODE := 1
-VI_MODE := 2
 SysGet, Monitor, Monitor
 
 X_L := MonitorLeft + (MonitorRight*PADDING_RATIO)
@@ -46,9 +45,18 @@ vk1C & r::
 ;-----------------------------
 ; Edit
 ;-----------------------------
-vk1C & i::Run, %EDITOR% %AHK_FILE%
-
-
+;vk1C & i::Run, %EDITOR% %AHK_FILE%
+vk1C & i::
+	if (GetKeyState("Shift", "P"))
+	{
+	    Run, %EDITOR% %AHK_DEF_FILE%
+	}
+	else
+	{
+	    Run, %EDITOR% %AHK_FILE%
+	}
+	Return
+	
 ;-----------------------------
 ; Mode Change
 ;-----------------------------
@@ -57,22 +65,6 @@ vk1C & i::Run, %EDITOR% %AHK_FILE%
 	{
 		mode := NO_PREFIX_MODE
 		TrayTip , ,Easy Mode, 1
-	}
-	else
-	{
-		mode := PREFIX_MODE
-		TrayTip , ,Normal Mode, 1
-	}
-Return
-
-;-----------------------------
-; Vi Mode Change
-;-----------------------------
-sc03A::
-	if mode <> 2
-	{
-		mode := VI_MODE
-		TrayTip , ,Vi Mode, 1
 	}
 	else
 	{
@@ -133,16 +125,16 @@ vk1C & c::MouseMove, %X_9%, %Y_9%, 7
 ;--------------------------
 ; Change Mouse Speed
 ;--------------------------
-vk1C & sc03A::
+vk1C & Shift::
   if A_TickCount < %MuhenkanDouble%
   {
-	if MOUSE_MOVE_DISTANCE <> 24
+	if MOUSE_MOVE_DISTANCE <> %MOUSE_MOVE_DISTANCE_H%
 	{
-		MOUSE_MOVE_DISTANCE := 24
+		MOUSE_MOVE_DISTANCE := MOUSE_MOVE_DISTANCE_H
 	}
 	else
 	{
-		MOUSE_MOVE_DISTANCE := 8
+		MOUSE_MOVE_DISTANCE := MOUSE_MOVE_DISTANCE_M
 	}
 	Return
   }
@@ -151,18 +143,29 @@ vk1C & sc03A::
     MuhenkanDouble = %A_TickCount%
     MuhenkanDouble += 400
 
-	if MOUSE_MOVE_DISTANCE <> 8
+	if MOUSE_MOVE_DISTANCE <> %MOUSE_MOVE_DISTANCE_M%
 	{
-		MOUSE_MOVE_DISTANCE := 8
+		MOUSE_MOVE_DISTANCE := MOUSE_MOVE_DISTANCE_M
 	}
 	else
 	{
-		MOUSE_MOVE_DISTANCE := 2
+		MOUSE_MOVE_DISTANCE := MOUSE_MOVE_DISTANCE_L
 	}
   }
  
 Return
 
+
+;-------------------
+; VI mode
+;-------------------
+vk1D & k::Up
+vk1D & j::Down
+vk1D & h::Left
+vk1D & l::Right
+vk1D & f::Send {B{ind}{PgDn}
+vk1D & b::Send {B{ind}{PgUp}
+vk1D & i::F2
 
 ;-------------------
 ; Home / End
@@ -185,8 +188,8 @@ vk1D & n::Send {Blind}{PgDn}
 ;----------------------------
 ^#h::^#Left
 ^#l::^#Right
-vk1D & h::^#Left
-vk1D & l::^#Right
+sc03A & h:: ^#Left
+sc03A & l:: ^#Right
 
 ;-------------------
 ; No Prefix Mode
@@ -252,19 +255,5 @@ vk1D & l::^#Right
 	return
 #if
 
-
-;-------------------
-; Vi Mode
-;-------------------
-#if mode = 2
-	k::Up
-	j::Down
-	h::Left
-	l::Right
-	i::
-		Send, {F2}
-		mode := PREFIX_MODE
-		Return
-#if
 
 
