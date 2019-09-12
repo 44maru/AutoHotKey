@@ -1,7 +1,7 @@
 #include keyMouse_define.ahk
 
 global mode := 0
-MOUSE_MOVE_DISTANCE := 8
+MOUSE_MOVE_DISTANCE := MOUSE_MOVE_DISTANCE_M
 PREFIX_MODE := 0
 NO_PREFIX_MODE := 1
 SysGet, Monitor, Monitor
@@ -97,13 +97,32 @@ vk1C & k::
 vk1C & j::
 vk1C & h::
 vk1C & l::
+	MOUSE_MOVE := MOUSE_MOVE_DISTANCE
     While (GetKeyState("vk1C", "P"))
     {
+    	if (GetKeyState("k", "P") || GetKeyState("h", "P") || GetKeyState("j", "P") || GetKeyState("l", "P"))
+    	{
+    		if (MOUSE_MOVE < 10) {
+    			MOUSE_MOVE := MOUSE_MOVE + 0.5
+    			
+	   		}else if (MOUSE_MOVE < 20) {
+	   			MOUSE_MOVE := MOUSE_MOVE + 1
+
+	   		}else if (MOUSE_MOVE < 21) {
+	   			MOUSE_MOVE := MOUSE_MOVE + 2
+			}
+	   		
+    	}
+    	else
+    	{
+			MOUSE_MOVE := MOUSE_MOVE_DISTANCE
+    	}
+    		
         MoveX := 0, MoveY := 0
-        MoveY += GetKeyState("k", "P") ? -MOUSE_MOVE_DISTANCE : 0
-        MoveX += GetKeyState("h", "P") ? -MOUSE_MOVE_DISTANCE : 0
-        MoveY += GetKeyState("j", "P") ?  MOUSE_MOVE_DISTANCE : 0
-        MoveX += GetKeyState("l", "P") ?  MOUSE_MOVE_DISTANCE : 0
+        MoveY += GetKeyState("k", "P") ? -MOUSE_MOVE : 0
+        MoveX += GetKeyState("h", "P") ? -MOUSE_MOVE : 0
+        MoveY += GetKeyState("j", "P") ?  MOUSE_MOVE : 0
+        MoveX += GetKeyState("l", "P") ?  MOUSE_MOVE : 0
         MouseMove, %MoveX%, %MoveY%, 1, R
         Sleep, 0
     }
@@ -163,8 +182,8 @@ vk1D & k::Up
 vk1D & j::Down
 vk1D & h::Left
 vk1D & l::Right
-vk1D & f::Send {B{ind}{PgDn}
-vk1D & b::Send {B{ind}{PgUp}
+vk1D & f::Send {Blind}{PgDn}
+vk1D & b::Send {Blind}{PgUp}
 vk1D & i::F2
 
 ;-------------------
@@ -188,8 +207,33 @@ vk1D & n::Send {Blind}{PgDn}
 ;----------------------------
 ^#h::^#Left
 ^#l::^#Right
-sc03A & h:: ^#Left
-sc03A & l:: ^#Right
+
+vk1C::
+  if A_TickCount < %HenkanDouble%
+  {
+	Send, ^#{Right}
+	Return
+  }
+  else
+  {
+	HenkanDouble = %A_TickCount%
+	HenkanDouble += 400
+  }
+Return
+ 
+vk1D::
+  if A_TickCount < %MuhenkanDouble%
+  {
+	Send, ^#{Left}
+	Return
+  }
+  else
+  {
+	MuhenkanDouble = %A_TickCount%
+	MuhenkanDouble += 400
+  }
+ 
+Return
 
 ;-------------------
 ; No Prefix Mode
@@ -254,6 +298,3 @@ sc03A & l:: ^#Right
 		Send {Home}
 	return
 #if
-
-
-
