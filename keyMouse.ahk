@@ -230,6 +230,7 @@ vk1D::
   }
   else
   {
+  	Send, {vk1D}
 	MuhenkanDouble = %A_TickCount%
 	MuhenkanDouble += 400
   }
@@ -299,3 +300,27 @@ Return
 		Send {Home}
 	return
 #if
+
+
+
+;-------------------
+; Chrome Bookmark
+;-------------------
+#IfWinActive, ahk_class Chrome_WidgetWin_1
+^b::
+	Send, !{e}
+	Send, b
+	Return
+#IfWinActive
+
+;---------------------------------------------------
+; Reset IME with escape vim INSERT mode on Putty
+;---------------------------------------------------
+#IfWinActive, ahk_class PuTTY
+^j::
+	Send, {vk1C}
+	Send, {vkf3}
+	Send, ^{j}
+	Return
+#IfWinActive
+
