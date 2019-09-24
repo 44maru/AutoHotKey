@@ -216,6 +216,7 @@ vk1C::
   }
   else
   {
+	Send, {vk1C}
 	HenkanDouble = %A_TickCount%
 	HenkanDouble += 400
   }
