@@ -90,9 +90,14 @@ vk1C & @::MouseClick, Middle
 vk1C & p::WheelUp
 vk1C & n::WheelDown
 
+
+
 ;-------------------
 ; Mouse move
 ;-------------------
+; Ignore key push in highspeed mode.
+vk1C & f::Return
+
 vk1C & k::
 vk1C & j::
 vk1C & h::
@@ -100,24 +105,27 @@ vk1C & l::
 	MOUSE_MOVE := MOUSE_MOVE_DISTANCE
     While (GetKeyState("vk1C", "P"))
     {
-    	if (GetKeyState("k", "P") || GetKeyState("h", "P") || GetKeyState("j", "P") || GetKeyState("l", "P"))
+    	if (GetKeyState("f", "P"))
     	{
-    		if (MOUSE_MOVE < 10) {
-    			MOUSE_MOVE := MOUSE_MOVE + 0.5
-    			
-	   		}else if (MOUSE_MOVE < 20) {
-	   			MOUSE_MOVE := MOUSE_MOVE + 1
-
-	   		}else if (MOUSE_MOVE < 21) {
-	   			MOUSE_MOVE := MOUSE_MOVE + 2
-			}
-	   		
+    		MOUSE_MOVE := MOUSE_MOVE_DISTANCE_H
     	}
     	else
     	{
-			MOUSE_MOVE := MOUSE_MOVE_DISTANCE
-    	}
+    		if (MOUSE_MOVE == MOUSE_MOVE_DISTANCE_H) {
+    			MOUSE_MOVE := MOUSE_MOVE_DISTANCE
+    		}
     		
+    		if (GetKeyState("k", "P") || GetKeyState("h", "P") || GetKeyState("j", "P") || GetKeyState("l", "P"))
+    		{
+    			if (MOUSE_MOVE < 7) {
+    				MOUSE_MOVE := MOUSE_MOVE + 0.5
+				}
+    		}
+    		else
+    		{
+				MOUSE_MOVE := MOUSE_MOVE_DISTANCE
+    		}
+    	}
         MoveX := 0, MoveY := 0
         MoveY += GetKeyState("k", "P") ? -MOUSE_MOVE : 0
         MoveX += GetKeyState("h", "P") ? -MOUSE_MOVE : 0
@@ -140,39 +148,6 @@ vk1C & d::MouseMove, %X_6%, %Y_6%, 5
 vk1C & z::MouseMove, %X_7%, %Y_7%, 5
 vk1C & x::MouseMove, %X_8%, %Y_8%, 5
 vk1C & c::MouseMove, %X_9%, %Y_9%, 5
-
-;--------------------------
-; Change Mouse Speed
-;--------------------------
-vk1C & Shift::
-  if A_TickCount < %MuhenkanDouble%
-  {
-	if MOUSE_MOVE_DISTANCE <> %MOUSE_MOVE_DISTANCE_H%
-	{
-		MOUSE_MOVE_DISTANCE := MOUSE_MOVE_DISTANCE_H
-	}
-	else
-	{
-		MOUSE_MOVE_DISTANCE := MOUSE_MOVE_DISTANCE_M
-	}
-	Return
-  }
-  else
-  {
-    MuhenkanDouble = %A_TickCount%
-    MuhenkanDouble += 400
-
-	if MOUSE_MOVE_DISTANCE <> %MOUSE_MOVE_DISTANCE_M%
-	{
-		MOUSE_MOVE_DISTANCE := MOUSE_MOVE_DISTANCE_M
-	}
-	else
-	{
-		MOUSE_MOVE_DISTANCE := MOUSE_MOVE_DISTANCE_L
-	}
-  }
- 
-Return
 
 
 ;-------------------
@@ -213,6 +188,7 @@ vk1D & n::Send {Blind}{PgDn}
 vk1C::
   if A_TickCount < %HenkanDouble%
   {
+	Send, {vkf3}
 	Send, ^#{Right}
 	Return
   }
@@ -232,11 +208,9 @@ vk1D::
   }
   else
   {
-  	Send, {vk1D}
 	MuhenkanDouble = %A_TickCount%
 	MuhenkanDouble += 400
   }
- 
 Return
 
 ;-------------------
