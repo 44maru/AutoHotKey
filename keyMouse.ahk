@@ -131,15 +131,15 @@ vk1C & l::
 ;--------------------------
 ; Mouse move to fix point
 ;--------------------------
-vk1C & q::MouseMove, %X_1%, %Y_1%, 7
-vk1C & w::MouseMove, %X_2%, %Y_2%, 7
-vk1C & e::MouseMove, %X_3%, %Y_3%, 7
-vk1C & a::MouseMove, %X_4%, %Y_4%, 7
-vk1C & s::MouseMove, %X_5%, %Y_5%, 7
-vk1C & d::MouseMove, %X_6%, %Y_6%, 7
-vk1C & z::MouseMove, %X_7%, %Y_7%, 7
-vk1C & x::MouseMove, %X_8%, %Y_8%, 7
-vk1C & c::MouseMove, %X_9%, %Y_9%, 7
+vk1C & q::MouseMove, %X_1%, %Y_1%, 5
+vk1C & w::MouseMove, %X_2%, %Y_2%, 5
+vk1C & e::MouseMove, %X_3%, %Y_3%, 5
+vk1C & a::MouseMove, %X_4%, %Y_4%, 5
+vk1C & s::MouseMove, %X_5%, %Y_5%, 5
+vk1C & d::MouseMove, %X_6%, %Y_6%, 5
+vk1C & z::MouseMove, %X_7%, %Y_7%, 5
+vk1C & x::MouseMove, %X_8%, %Y_8%, 5
+vk1C & c::MouseMove, %X_9%, %Y_9%, 5
 
 ;--------------------------
 ; Change Mouse Speed
@@ -185,6 +185,8 @@ vk1D & l::Right
 vk1D & f::Send {Blind}{PgDn}
 vk1D & b::Send {Blind}{PgUp}
 vk1D & i::F2
+vk1D & x::Send {Blind}{Delete}
+
 
 ;-------------------
 ; Home / End
