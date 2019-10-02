@@ -1,5 +1,7 @@
 #include keyMouse_define.ahk
 
+CoordMode, Mouse, Screen
+
 global mode := 0
 MOUSE_MOVE_DISTANCE := MOUSE_MOVE_DISTANCE_M
 PREFIX_MODE := 0
@@ -96,7 +98,7 @@ vk1C & n::WheelDown
 ; Mouse move
 ;-------------------
 ; Ignore key push in highspeed mode.
-vk1C & f::Return
+;vk1C & f::Return
 
 vk1C & k::
 vk1C & j::
@@ -105,7 +107,7 @@ vk1C & l::
 	MOUSE_MOVE := MOUSE_MOVE_DISTANCE
     While (GetKeyState("vk1C", "P"))
     {
-    	if (GetKeyState("f", "P"))
+    	if (GetKeyState("shift", "P"))
     	{
     		MOUSE_MOVE := MOUSE_MOVE_DISTANCE_H
     	}
