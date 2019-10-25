@@ -54,19 +54,19 @@ vk1C & 2::Run, %EDITOR% %AHK_DEF_FILE%
 ;-----------------------------
 ; Numeric Keyboard
 ;-----------------------------
-^!0::Send 0
-^!Space::Send 0
-^!n::Send 1
-^!m::Send 1
-^!,::Send 2
-^!.::Send 3
-^!j::Send 4
-^!k::Send 5
-^!l::Send 6
-^!u::Send 7
-^!i::Send 8
-^!o::Send 9
-^!RAlt::Send .
+^+0::Send 0
+^+Space::Send 0
+^+n::Send 1
+^+m::Send 1
+^+,::Send 2
+^+.::Send 3
+^+j::Send 4
+^+k::Send 5
+^+l::Send 6
+^+u::Send 7
+^+i::Send 8
+^+o::Send 9
+^+RAlt::Send .
 
 ;-----------------------------
 ; Mode Change
