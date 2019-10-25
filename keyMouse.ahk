@@ -47,18 +47,27 @@ vk1C & r::
 ;-----------------------------
 ; Edit
 ;-----------------------------
-;vk1C & i::Run, %EDITOR% %AHK_FILE%
-vk1C & i::
-	if (GetKeyState("Shift", "P"))
-	{
-	    Run, %EDITOR% %AHK_DEF_FILE%
-	}
-	else
-	{
-	    Run, %EDITOR% %AHK_FILE%
-	}
-	Return
-	
+vk1C & 1::Run, %EDITOR% %AHK_FILE%
+vk1C & 2::Run, %EDITOR% %AHK_DEF_FILE%
+
+
+;-----------------------------
+; Numeric Keyboard
+;-----------------------------
+^!0::Send 0
+^!Space::Send 0
+^!n::Send 1
+^!m::Send 1
+^!,::Send 2
+^!.::Send 3
+^!j::Send 4
+^!k::Send 5
+^!l::Send 6
+^!u::Send 7
+^!i::Send 8
+^!o::Send 9
+^!RAlt::Send .
+
 ;-----------------------------
 ; Mode Change
 ;-----------------------------
