@@ -49,7 +49,7 @@ vk1C & r::
 ;-----------------------------
 vk1C & 1::Run, %EDITOR% %AHK_FILE%
 vk1C & 2::Run, %EDITOR% %AHK_DEF_FILE%
-
+vk1C & 3::Run, C:\WINDOWS\explorer.exe %AHK_DIR%
 
 ;-----------------------------
 ; Numeric Keyboard
