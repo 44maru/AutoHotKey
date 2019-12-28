@@ -120,6 +120,10 @@ vk1C & l::
     	{
     		MOUSE_MOVE := MOUSE_MOVE_DISTANCE_H
     	}
+    	else if (GetKeyState("ctrl", "P"))
+    	{
+    		MOUSE_MOVE := MOUSE_MOVE_DISTANCE_L
+    	}
     	else
     	{
     		if (MOUSE_MOVE == MOUSE_MOVE_DISTANCE_H) {
