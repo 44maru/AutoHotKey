@@ -264,6 +264,12 @@ return
 vk1D & p::Send {Blind}{PgUp}
 vk1D & n::Send {Blind}{PgDn}
 
+;-------------------
+; Ctrl+Tab / Ctrl+Shift+Tab
+;-------------------
+vk1C & o::^tab
+vk1C & i::^+tab
+
 ;----------------------------
 ; Windows Virtual Desktop
 ;----------------------------
