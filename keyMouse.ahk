@@ -380,14 +380,25 @@ Return
 	Return
 #IfWinActive
 
-;---------------------------------------------------
-; Reset IME with escape vim INSERT mode on Putty
-;---------------------------------------------------
+;--------------------
+; On Putty
+;--------------------
 #IfWinActive, ahk_class PuTTY
+
+;
+; Reset IME with escape vim INSERT mode
+;
 ^j::
 	Send, {vk1C}
 	Send, {vkf3}
 	Send, ^{j}
 	Return
+
+;
+; Change window for tmux
+;
+vk1C & o::^!l
+vk1C & i::^!h
+
 #IfWinActive
 
