@@ -406,5 +406,14 @@ Return
 vk1C & o::^!l
 vk1C & i::^!h
 
+;
+; Vim window jump
+; Also need setting keybind Alt+x -> Ctrl+x in vimrc
+;
+^+h::Send, !w{h}
+^+j::Send, !w{j}
+^+k::Send, !w{k}
+^+l::Send, !w{l}
+
 #IfWinActive
 
