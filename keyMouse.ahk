@@ -245,7 +245,13 @@ vk1D & l::Right
 vk1D & f::Send {Blind}{PgDn}
 vk1D & b::Send {Blind}{PgUp}
 vk1D & i::F2
-vk1D & x::Send {Blind}{Delete}
+vk1D & d::Send {Blind}{Delete}
+vk1D & x::Send {Blind}{Backspace}
+
+;--------------------
+; Escape
+;--------------------
+vk1D & e::Send, {Esc}
 
 
 ;-------------------
