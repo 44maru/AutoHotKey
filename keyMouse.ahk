@@ -54,18 +54,19 @@ vk1C & 3::Run, C:\WINDOWS\explorer.exe %AHK_DIR%
 ;-----------------------------
 ; Numeric Keyboard
 ;-----------------------------
-^+0::Send 0
-^+Space::Send 0
-^+n::Send 1
-^+m::Send 1
-^+,::Send 2
-^+.::Send 3
-^+j::Send 4
-^+k::Send 5
-^+l::Send 6
-^+u::Send 7
-^+i::Send 8
-^+o::Send 9
+^+0::Send {Numpad0}
+^+Space::Send {Numpad0}
+^+n::Send,{Numpad1}
+^+m::Send,{Numpad1}
+^+,::Send,{Numpad2}
+^+.::Send,{Numpad3}
+^+j::Send,{Numpad4}
+^+k::Send,{Numpad5}
+^+l::Send,{Numpad6}
+^+u::Send,{Numpad7}
+^+i::Send,{Numpad8}
+^+o::Send,{Numpad9}
+^+/::Send,/
 ^+RAlt::Send .
 
 ;-----------------------------
