@@ -157,83 +157,119 @@ vk1C & l::
 ;--------------------------
 vk1C & q::
 	x := X_1
+	y := Y_1
 	if (GetKeyState("shift", "P"))
     {
-    	x := x + MonitorRight
+    	if MULTI_DISPLAY_TYPE = %HOROZION%
+    		x := x + MonitorRight
+    	else
+    		y := y + MonitorBottom
 	}
-	MouseMove, %x%, %Y_1%, 5
+	MouseMove, %x%, %y%, 5
 	Return
 
 vk1C & w::
 	x := X_2
+	y := Y_2
 	if (GetKeyState("shift", "P"))
     {
-    	x := x + MonitorRight
-	}
-	MouseMove, %x%, %Y_2%, 5
+    	if MULTI_DISPLAY_TYPE = %HOROZION%
+    		x := x + MonitorRight
+    	else
+    		y := y + MonitorBottom
+   	}
+	MouseMove, %x%, %y%, 5
 	Return
 	
 vk1C & e::
 	x := X_3
+	y := Y_3
 	if (GetKeyState("shift", "P"))
     {
-    	x := x + MonitorRight
-	}
-	MouseMove, %x%, %Y_3%, 5
+    	if MULTI_DISPLAY_TYPE = %HOROZION%
+    		x := x + MonitorRight
+    	else
+    		y := y + MonitorBottom
+   	}
+	MouseMove, %x%, %y%, 5
 	Return
 	
 vk1C & a::
 	x := X_4
+	y := Y_4
 	if (GetKeyState("shift", "P"))
     {
-    	x := x + MonitorRight
-	}
-	MouseMove, %x%, %Y_4%, 5
+    	if MULTI_DISPLAY_TYPE = %HOROZION%
+    		x := x + MonitorRight
+    	else
+    		y := y + MonitorBottom
+   	}
+	MouseMove, %x%, %y%, 5
 	Return
 	
 vk1C & s::
 	x := X_5
+	y := Y_5
 	if (GetKeyState("shift", "P"))
     {
-    	x := x + MonitorRight
-	}
-	MouseMove, %x%, %Y_5%, 5
+    	if MULTI_DISPLAY_TYPE = %HOROZION%
+    		x := x + MonitorRight
+    	else
+    		y := y + MonitorBottom
+   	}
+	MouseMove, %x%, %y%, 5
 	Return
 	
 vk1C & d::
 	x := X_6
+	y := Y_6
 	if (GetKeyState("shift", "P"))
     {
-    	x := x + MonitorRight
-	}
-	MouseMove, %x%, %Y_6%, 5
+    	if MULTI_DISPLAY_TYPE = %HOROZION%
+    		x := x + MonitorRight
+    	else
+    		y := y + MonitorBottom
+   	}
+	MouseMove, %x%, %y%, 5
 	Return
 	
 vk1C & z::
 	x := X_7
+	y := Y_7
 	if (GetKeyState("shift", "P"))
     {
-    	x := x + MonitorRight
-	}
-	MouseMove, %x%, %Y_7%, 5
+    	if MULTI_DISPLAY_TYPE = %HOROZION%
+    		x := x + MonitorRight
+    	else
+    		y := y + MonitorBottom
+   	}
+	MouseMove, %x%, %y%, 5
 	Return
 	
 vk1C & x::
 	x := X_8
+	y := Y_8
 	if (GetKeyState("shift", "P"))
     {
-    	x := x + MonitorRight
-	}
-	MouseMove, %x%, %Y_8%, 5
+    	if MULTI_DISPLAY_TYPE = %HOROZION%
+    		x := x + MonitorRight
+    	else
+    		y := y + MonitorBottom
+   	}
+	MouseMove, %x%, %y%, 5
 	Return
 	
 vk1C & c::
 	x := X_9
+	y := Y_9
 	if (GetKeyState("shift", "P"))
     {
-    	x := x + MonitorRight
-	}
-	MouseMove, %x%, %Y_9%, 5
+    	if MULTI_DISPLAY_TYPE = %HOROZION%
+    		x := x + MonitorRight
+    	else
+    		y := y + MonitorBottom
+   	}
+	MouseMove, %x%, %y%, 5
 	Return
 	
 ;-------------------
