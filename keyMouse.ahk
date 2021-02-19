@@ -429,6 +429,12 @@ Return
 #IfWinActive, ahk_class PuTTY
 
 ;
+; Cursor jump next or previouse word
+;
+^+f::Send, {Esc}f
+^+b::Send, {Esc}b
+	
+;
 ; Reset IME with escape vim INSERT mode
 ;
 ^j::
