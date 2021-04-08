@@ -411,7 +411,18 @@ Return
 	return
 #if
 
+;-------------------
+; Output timestamp
+;-------------------
+^+;::
+	FormatTime,TimeString,,yyyyMMdd
+	Send,%TimeString%
+	Return
 
+^+vkBA::
+	FormatTime,TimeString,,HH:mm:ss
+	Send,%TimeString%
+	Return
 
 ;-------------------
 ; Chrome Bookmark
