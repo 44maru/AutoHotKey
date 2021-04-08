@@ -1,0 +1,4 @@
+# AutoHotKey
+
+* 修飾キーラベルの調べ方
+** https://pouhon.net/ahk-basic/692/
