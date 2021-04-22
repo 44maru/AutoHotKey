@@ -279,11 +279,11 @@ vk1D & k::Up
 vk1D & j::Down
 vk1D & h::Left
 vk1D & l::Right
-vk1D & f::Send {Blind}{PgDn}
-vk1D & b::Send {Blind}{PgUp}
 vk1D & i::F2
 vk1D & d::Send {Blind}{Delete}
 vk1D & x::Send {Blind}{Backspace}
+vk1D & w::Send {Blind}{Right}{Right}{Right}{Right}
+vk1D & b::Send {Blind}{Left}{Left}{Left}{Left}
 
 ;--------------------
 ; Escape
