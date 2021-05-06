@@ -66,7 +66,7 @@ vk1C & 3::Run, C:\WINDOWS\explorer.exe %AHK_DIR%
 ^+u::Send,{Numpad7}
 ^+i::Send,{Numpad8}
 ^+o::Send,{Numpad9}
-^+/::Send,/
+^+~::Send,/
 ^+RAlt::Send .
 
 ;-----------------------------
@@ -416,6 +416,11 @@ Return
 ;-------------------
 ^+;::
 	FormatTime,TimeString,,yyyyMMdd
+	Send,%TimeString%
+	Return
+
+^+/::
+	FormatTime,TimeString,,yyyy/MM/dd
 	Send,%TimeString%
 	Return
 
