@@ -442,7 +442,7 @@ Return
 ;--------------------
 ; On Putty
 ;--------------------
-#IfWinActive, ahk_class PuTTY
+#IfWinActive, ahk_class PuTTY || ahk_class KiTTY
 
 ;
 ; Cursor jump next or previouse word
