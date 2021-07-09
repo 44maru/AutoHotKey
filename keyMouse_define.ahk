@@ -1,4 +1,5 @@
 EDITOR := "C:\Program Files (x86)\sakura\sakura.exe"
+CHROME := "C:\Program Files\Google\Chrome\Application\chrome.exe"
 AHK_DIR := "C:\xxx"
 AHK_FILE := AHK_DIR . "\keyMouse.ahk"
 AHK_DEF_FILE := AHK_DIR . "\keyMouse_define.ahk"
