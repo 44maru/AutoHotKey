@@ -430,14 +430,19 @@ Return
 	Return
 
 ;-------------------
-; Chrome Bookmark
+; Chrome
 ;-------------------
+; Bookmark
 #IfWinActive, ahk_class Chrome_WidgetWin_1
 ^b::
 	Send, !{e}
 	Send, b
 	Return
 #IfWinActive
+
+; Open tab for clipboard url
+vk1C & g::
+	Run, %CHROME% %clipboard%
 
 ;--------------------
 ; On Putty
