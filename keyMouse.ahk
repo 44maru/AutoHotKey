@@ -471,13 +471,13 @@ vk1C & o::^!l
 vk1C & i::^!h
 
 
-;---------------------
-; Vim window jump
-;---------------------
-!h::Send, ^wh
-!j::Send, ^wj
-!k::Send, ^wk
-!l::Send, ^wl
+;----------------------------------------
+; Alt+Shift+(h/j/k/l) -> Vim window jump
+;----------------------------------------
++!h::Send, ^wh
++!j::Send, ^wj
++!k::Send, ^wk
++!l::Send, ^wl
 
 #IfWinActive
 
