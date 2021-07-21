@@ -441,7 +441,7 @@ Return
 #IfWinActive
 
 ; Open tab for clipboard url
-vk1C & g::
+vk1D & g::
 	Run, %CHROME% %clipboard%
 
 ;--------------------
