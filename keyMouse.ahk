@@ -294,12 +294,12 @@ vk1D & e::Send, {Esc}
 ;-------------------
 ; Home / End
 ;-------------------
-vk1D & g::
-if GetKeyState("shift", "P")
-	Send {End}
-else
-	Send {Home}
-return
+;vk1D & g::
+;if GetKeyState("shift", "P")
+;	Send {End}
+;else
+;	Send {Home}
+;return
 
 ;-------------------
 ; PageUp / PageDown
