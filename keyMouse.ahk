@@ -456,7 +456,7 @@ vk1D & g::
 ;--------------------
 ; On Putty
 ;--------------------
-#IfWinActive, ahk_class PuTTY || ahk_class KiTTY
+#if WinActive("ahk_class PuTTY") || WinActive("ahk_class KiTTY")
 
 ;
 ; Cursor jump next or previouse word
@@ -490,5 +490,5 @@ vk1C & i::^!h
 !+l::Send, ^wl
 
 
-#IfWinActive
+#if
 
