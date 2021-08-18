@@ -54,19 +54,19 @@ vk1C & 3::Run, C:\WINDOWS\explorer.exe %AHK_DIR%
 ;-----------------------------
 ; Numeric Keyboard
 ;-----------------------------
-^+0::Send {Numpad0}
-^+Space::Send {Numpad0}
-^+n::Send,{Numpad1}
-^+m::Send,{Numpad1}
-^+,::Send,{Numpad2}
-^+.::Send,{Numpad3}
-^+j::Send,{Numpad4}
-^+k::Send,{Numpad5}
-^+l::Send,{Numpad6}
-^+u::Send,{Numpad7}
-^+i::Send,{Numpad8}
-^+o::Send,{Numpad9}
-^+~::Send,/
+^+0::Send 0
+^+Space::Send 0
+^+n::Send,1
+^+m::Send,1
+^+,::Send,2
+^+.::Send,3
+^+j::Send,4
+^+k::Send,5
+^+l::Send,6
+^+u::Send,7
+^+i::Send,8
+^+o::Send,9
+^+~::Send,.
 ^+RAlt::Send .
 
 ;-----------------------------
@@ -271,7 +271,14 @@ vk1C & c::
    	}
 	MouseMove, %x%, %y%, 5
 	Return
-	
+
+;-----------------------------
+; Henkan -> Hankaku/Zenkaku
+;-----------------------------
+vk1C::
+	Send, {vkf3}
+	Return
+
 ;-------------------
 ; VI mode
 ;-------------------
@@ -319,20 +326,20 @@ vk1C & i::^+tab
 ^#h::^#Left
 ^#l::^#Right
 
-vk1C::
-  if A_TickCount < %HenkanDouble%
-  {
-	Send, {vkf3}
-	Send, ^#{Right}
-	Return
-  }
-  else
-  {
-	Send, {vk1C}
-	HenkanDouble = %A_TickCount%
-	HenkanDouble += 400
-  }
-Return
+;vk1C::
+;  if A_TickCount < %HenkanDouble%
+;  {
+;	Send, {vkf3}
+;	Send, ^#{Right}
+;	Return
+;  }
+;  else
+;  {
+;	Send, {vk1C}
+;	HenkanDouble = %A_TickCount%
+;	HenkanDouble += 400
+;  }
+;Return
  
 vk1D::
   if A_TickCount < %MuhenkanDouble%
@@ -429,6 +436,7 @@ Return
 	Send,%TimeString%
 	Return
 
+
 ;-------------------
 ; Chrome
 ;-------------------
@@ -444,6 +452,7 @@ Return
 vk1D & g::
 	Run, %CHROME% %clipboard%
 
+
 ;--------------------
 ; On Putty
 ;--------------------
@@ -454,7 +463,8 @@ vk1D & g::
 ;
 ^+f::Send, {Esc}f
 ^+b::Send, {Esc}b
-	
+
+
 ;
 ; Reset IME with escape vim INSERT mode
 ;
@@ -478,6 +488,7 @@ vk1C & i::^!h
 !+j::Send, ^wj
 !+k::Send, ^wk
 !+l::Send, ^wl
+
 
 #IfWinActive
 
