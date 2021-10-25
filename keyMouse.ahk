@@ -489,6 +489,8 @@ vk1C & i::^!h
 !+k::Send, ^wk
 !+l::Send, ^wl
 
+; coc.nvimで変数・関数の呼び出し元を検索する(coc-reference)バインド
+^+h::Send, gr
 
 #if
 
