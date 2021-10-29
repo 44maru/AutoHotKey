@@ -480,6 +480,13 @@ vk1D & g::
 vk1C & o::^!l
 vk1C & i::^!h
 
+;
+; ctrl+alt+spaceで、tmux-fzfを呼び出し
+;
+^!Space::
+	Send, ^z
+	Send, F
+	Return
 
 ;----------------------------------------
 ; Alt+Shift+(h/j/k/l) -> Vim window jump
