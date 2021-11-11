@@ -452,6 +452,32 @@ Return
 vk1D & g::
 	Run, %CHROME% %clipboard%
 
+;-------------------
+; Slack
+;-------------------
+#IfWinActive, ahk_exe slack.exe
+
+; ctrl2回でコードブロック
+$ctrl::
+  KeyWait, ctrl, T0.4
+  if ErrorLevel
+  {
+    send, {ctrl}
+    return
+  }
+  if A_TickCount < %ctrlDouble%
+  {
+    send, ^+!c
+    return
+  }
+  else
+  {
+    ctrlDouble = %A_TickCount%
+    ctrlDouble += 400
+  }
+return
+
+#IfWinActive
 
 ;--------------------
 ; On Putty
