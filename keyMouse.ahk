@@ -507,11 +507,11 @@ vk1C & o::^!l
 vk1C & i::^!h
 
 ;
-; ctrl+alt+spaceで、tmux-fzfを呼び出し
+; ctrl+alt+spaceで、自作ツールtmux-window-fzfを呼び出し
 ;
 ^!Space::
 	Send, ^z
-	Send, F
+	Send, f
 	Return
 
 ;----------------------------------------
