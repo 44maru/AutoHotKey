@@ -525,5 +525,15 @@ vk1C & i::^!h
 ; coc.nvimで変数・関数の呼び出し元を検索する(coc-reference)バインド
 ^+h::Send, gr
 
+; マウスの拡張ボタン1でm(vimでマウスモードON)
+XButton1::
+  Send, m
+return
+
+; マウスの拡張ボタン2でM(vimでマウスモードOFF)
+XButton2::
+  Send, M
+return
+
 #if
 
