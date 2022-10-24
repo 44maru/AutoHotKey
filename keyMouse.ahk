@@ -443,6 +443,8 @@ Return
 ; Bookmark
 #IfWinActive, ahk_class Chrome_WidgetWin_1
 ^b::
+	Send, {vkf2}
+	Send, {vkf3}
 	Send, !{e}
 	Send, b
 	Return
