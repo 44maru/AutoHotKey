@@ -54,6 +54,9 @@ vk1C & 3::Run, C:\WINDOWS\explorer.exe %AHK_DIR%
 ;-----------------------------
 ; Numeric Keyboard
 ;-----------------------------
+; テンキーもどきのマップはexcelの場合、
+; excel自身のショートカットキーで利用できなくなるものが多いので無効
+#IfWinNotActive, ahk_class XLMAIN
 ^+0::Send 0
 ^+Space::Send 0
 ^+n::Send,1
@@ -68,6 +71,7 @@ vk1C & 3::Run, C:\WINDOWS\explorer.exe %AHK_DIR%
 ^+o::Send,9
 ^+~::Send,.
 ^+RAlt::Send .
+#IfWinActive
 
 ;-----------------------------
 ; Mode Change
