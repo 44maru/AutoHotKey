@@ -496,10 +496,10 @@ return
 ^+f::Send, {Esc}f
 ^+b::Send, {Esc}b
 
-; ctrl+; -> linux terminalでのカーソルより前の単語削除
-; ctrl+: -> linux terminalでのカーソルより後の単語削除
-ctrl & vkBB::Send, {Esc}{Backspace}
-ctrl & vkBA::Send, {Esc}d
+; ctrl+@       -> linux terminalでのカーソルより前の単語削除
+; ctrl+Shift+@ -> linux terminalでのカーソルより後の単語削除
+^@::Send, {Esc}{Backspace}
+^+@::Send, {Esc}d
 
 ;
 ; Reset IME with escape vim INSERT mode
