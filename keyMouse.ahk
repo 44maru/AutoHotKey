@@ -452,6 +452,15 @@ Return
 	Send, !{e}
 	Send, b
 	Return
+
+; リンクテキストをマウスオーバーしてctrl+qでテキストをコピー
+; -> Copy Link拡張機能の呼び出し
+;    https://chrome.google.com/webstore/detail/copy-link/mjpbijfgaajfmabmfnabchojdlpfnbbi?hl=ja
+^q::
+	MouseClick, Right
+	Send, c
+	Return
+	
 #IfWinActive
 
 ; Open tab for clipboard url
