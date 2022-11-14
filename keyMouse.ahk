@@ -583,3 +583,5 @@ XButton2::
 
 #if
 
+#include keyMouse_after.ahk
+
