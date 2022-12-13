@@ -3,6 +3,7 @@ CHROME := "C:\Program Files\Google\Chrome\Application\chrome.exe"
 AHK_DIR := "C:\xxx"
 AHK_FILE := AHK_DIR . "\keyMouse.ahk"
 AHK_DEF_FILE := AHK_DIR . "\keyMouse_define.ahk"
+AHK_AFTER_FILE := AHK_DIR . "\keyMouse_after.ahk"
 
 PADDING_RATIO := 0.05
 
