@@ -528,10 +528,15 @@ vk1C & i::^!h
 
 ;
 ; ctrl+alt+spaceで、自作ツールtmux-window-fzfを呼び出し
+; pane最大化OFF(pane移動) -> 最大化ONしてから実行するようにしている
 ;
 ^!Space::
 	Send, ^z
-	Send, f
+	Send, j
+	Send, ^z
+	Send, z
+	Send, ^z
+	Send, f	
 	Return
 
 ;----------------------------------------
