@@ -107,11 +107,12 @@ vk1C & @::MouseClick, Middle
 vk1C & p::WheelUp
 vk1C & n::WheelDown
 
-RButton & WheelUp::
+; ~修飾子をつけることで右クリック単体実行もできるようにしている
+~RButton & WheelUp::
   Send, {Blind}{PgUp}
   return
 
-RButton & WheelDown::
+~RButton & WheelDown::
   Send, {Blind}{PgDn}
   return
 
