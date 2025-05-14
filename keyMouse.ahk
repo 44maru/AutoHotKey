@@ -107,7 +107,13 @@ vk1C & @::MouseClick, Middle
 vk1C & p::WheelUp
 vk1C & n::WheelDown
 
+RButton & WheelUp::
+  Send, {Blind}{PgUp}
+  return
 
+RButton & WheelDown::
+  Send, {Blind}{PgDn}
+  return
 
 ;-------------------
 ; Mouse move
