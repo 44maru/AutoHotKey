@@ -116,6 +116,32 @@ vk1C & n::WheelDown
   Send, {Blind}{PgDn}
   return
 
+; 上記右クリック＋マウスホイールの組み合わせの設定を定義すると、
+; putty(kitty)が非アクティブの状態で右クリックすると、2回ペースとが実行されるという問題がおきた
+; それを防ぐために、下記の設定をいれてある（chatGPTが生成したコードを参考にした）
+~RButton::
+    ; PuTTYウィンドウがアクティブでない場合は処理を中止
+    IfWinNotActive, ahk_class PuTTY
+        Return
+
+    ; KiTTYウィンドウがアクティブでない場合は処理を中止
+    IfWinNotActive, ahk_class KiTTY
+        Return
+
+    ; 右クリックの動作を無効化
+    SetTimer, DisableRightClick, 100
+    Return
+
+DisableRightClick:
+    ; 右クリックが離された場合、タイマーを停止
+    If (GetKeyState("RButton", "P") = 0)
+    {
+        SetTimer, DisableRightClick, Off
+        ; ペースト操作を1回だけ実行
+        Send, {Blind}{PgUp}
+    }
+    Return
+
 ;-------------------
 ; Mouse move
 ;-------------------
