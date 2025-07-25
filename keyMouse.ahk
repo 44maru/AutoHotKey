@@ -3,9 +3,16 @@
 CoordMode, Mouse, Screen
 
 global mode := 0
+
 MOUSE_MOVE_DISTANCE := MOUSE_MOVE_DISTANCE_M
 PREFIX_MODE := 0
 NO_PREFIX_MODE := 1
+
+TMUX_MOUSE_MODE := 1
+MOUSE_MODE_ON := 1
+MOUSE_MODE_OFF := 0
+
+
 SysGet, Monitor, Monitor
 
 X_L := MonitorLeft + (MonitorRight*PADDING_RATIO)
@@ -107,7 +114,8 @@ vk1C & @::MouseClick, Middle
 vk1C & p::WheelUp
 vk1C & n::WheelDown
 
-; ~修飾子をつけることで右クリック単体実行もできるようにしている
+
+; ~を先頭につけることで右クリック単体実行できるようにしている
 ~RButton & WheelUp::
   Send, {Blind}{PgUp}
   return
@@ -487,14 +495,6 @@ Return
 	Send, b
 	Return
 
-; リンクテキストをマウスオーバーしてctrl+qでテキストをコピー
-; -> Copy Link拡張機能の呼び出し
-;    https://chrome.google.com/webstore/detail/copy-link/mjpbijfgaajfmabmfnabchojdlpfnbbi?hl=ja
-^q::
-	MouseClick, Right
-	Send, c
-	Return
-	
 #IfWinActive
 
 ; Open tab for clipboard url
@@ -548,7 +548,7 @@ return
 ; Reset IME with escape vim INSERT mode
 ;
 ^j::
-	Send, {vk1C}
+	Send, {vkf2}
 	Send, {vkf3}
 	Send, ^{j}
 	Return
@@ -560,16 +560,13 @@ vk1C & o::^!l
 vk1C & i::^!h
 
 ;
-; ctrl+alt+spaceで、自作ツールtmux-window-fzfを呼び出し
-; pane最大化OFF(pane移動) -> 最大化ONしてから実行するようにしている
+; ctrl+alt+spaceで、自作ツールtmux-fzfを呼び出し
+;  tmux.confの以下
+;  bind f run -b "${HOME}/.tmux/plugins/tmux-fzf/scripts/window.sh switch"
 ;
 ^!Space::
 	Send, ^z
-	Send, j
-	Send, ^z
-	Send, z
-	Send, ^z
-	Send, f	
+	Send, f
 	Return
 
 ;----------------------------------------
@@ -584,8 +581,9 @@ vk1C & i::^!h
 ^+h::Send, gr
 
 ;-----------------------------------------------------------------
-; マウスの拡張ボタン1でvimマウスモードON/OFF
+; マウスの拡張ボタン1(左手前ボタン)でvimマウスモードON/OFF
 ;-----------------------------------------------------------------
+vim_mouse_mode := OFF
 XButton1::
 	if %vim_mouse_mode% = %ON%
 	{
@@ -599,8 +597,35 @@ XButton1::
 	}
 return
 
+RButton::
+  ; 右クリックが離されるのを0.3秒待つ
+  KeyWait, RButton, T0.3
+  ; ボタン押しっぱなしの場合
+  If (ErrorLevel){
+	if TMUX_MOUSE_MODE = %MOUSE_MODE_ON%
+	{
+		TMUX_MOUSE_MODE := MOUSE_MODE_OFF
+		Send, ^z
+		Send, M
+	}	
+	else
+	{
+		TMUX_MOUSE_MODE := MOUSE_MODE_ON
+		Send, ^z
+		Send, m
+	}
+	return
+
+  ; ワンクリックの場合
+  }else{
+    MouseClick, Right
+  }
+  return
+
+
+
 ;-----------------------------------------------------------------
-; マウスの拡張ボタン2でvim quickhlプラグインのキーバインド送信
+; マウスの拡張ボタン2(左奥ボタン)でvim quickhlプラグインのキーバインド送信
 ;-----------------------------------------------------------------
 XButton2::
   ; 拡張ボタン2が離されるのを0.3秒待つ
@@ -622,5 +647,10 @@ XButton2::
 
 #if
 
-#include keyMouse_after.ahk
+#if WinActive("ahk_exe slack.exe")
 
+^;::^+;
+
+#if
+
+#include keyMouse_after.ahk
