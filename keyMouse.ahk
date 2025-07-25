@@ -482,7 +482,43 @@ Return
 	Send,%TimeString%
 	Return
 
+;---------------------------------------
+; adoc
+;---------------------------------------
+; 最初に::を付加すると、EnterやSpaceを押すことで変換が走るようになる
+; 最初に:*:とした場合は、即座に変換される
+::/wc::
+    SendInput,
+    ( LTrim
+        [source,console]
+        ----
 
+        ----
+    )
+    Send, {Up}
+    return
+
+::/wt::
+    SendInput,
+    ( LTrim
+        [options="autowidth"]
+        |===
+        | | | |
+        
+        |
+        |
+        |
+        |
+        
+        |===
+        
+    )
+    Loop 8 {
+        Send, {Up}
+    }
+    Send, {Right}
+    return
+    
 ;-------------------
 ; Chrome
 ;-------------------
